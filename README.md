@@ -15,6 +15,17 @@
   - [16V Current and Thermal Limits](#16v-current-and-thermal-limits)
   - [Fan Requirements above 70% Loading](#fan-requirements-above-70%-loading)
 - [Installation and Wiring Requirements](#installation-and-wiring-requirements)
+  - [ATX DC2DC Dimensions and Connector Locations](#atx-dc2dc-dimensions-and-connector-locations)
+  - [Connector Pinout Tables](#connector-pinout-tables)
+    - [J1: ATX Main Power Connector](#j1-atx-main-power-connector)
+    - [J3: ATX CPU Power Connector](#j3-atx-cpu-power-connector)
+    - [J5: ATX PCIE Power Connector](#j5-atx-pcie-power-connector)
+    - [J13-14: 8in. Disk DC Power Connectors](#j13-14-8in-disk-dc-power-connectors)
+    - [J15: S-100 Bus Power Output Connector](#j15-s-100-bus-power-output-connector)
+    - [J16: Voltage/Current Monitor Connector](#j16-voltagecurrent-monitor-connector)
+    - [J17: Control/Status Connector](#j17-controlstatus-connector)
+    - [J22: FAN Control Connector](#j22-fan-control-connector)
+    - [J23-26: PC FAN Connectors](#j23-26-pc-fan-connectors)
 
 ## Project Overview ##
 
@@ -71,11 +82,12 @@ The main determination of which ATX PSU are acceptable are driven by the 12V loa
   | <b>J10 - 2-Pins</b>    | S-100 Power Enable\*            | Power Enabled when shorted              |
   | <b>J11 - 3-Pins</b>    | Fan VCC Select - (for PWM)     | 1-2=5V, 2-3=3.3V                        |
   | <b>J12 - 3-Pins</b>    | -5V In Select (-12/-16)        | 1-2=-12V, 2-3=-16V                      |
-  | <b>J13/14 - 3-Pins</b> | 8-in Drive Power Sockets       | 2/3/6=GND, 1=+24V, 4=-5V, 5=5V          |
+  | <b>J13/14 - 6-Pins</b> | 8-in Drive Power Sockets       | 2/3/6=GND, 1=+24V, 4=-5V, 5=5V          |
   | <b>J15 - 6-Pins</b>    | S-100 Bus Voltage Outputs      | 1/2=+7.5V, 3/4=GND, 5=+16V, -16V        |
   | <b>J16 - 8-Pins</b>    | Voltage/Current Monitor Output | (See V/I Monitor Pinout)                |
   | <b>J17 - 6-Pins</b>    | Control/Status Port            | (See Control/Status Port Pinout)        |
   | <b>J18-20 - 4-Pins</b> | PC Fan Connections             | 1=GND, 2=+12V, 3=TACH, 4=PWM            |
+  | <b>J22 - 8-Pins</b>    | Fan Control Connector          | (See Fan Control Connector Pinout)      |
   | <b>J23-26 - 2-Pins</b> | Power Supply Fuses             | J23=+7.5V, J24=+16V, J25=+24V, J26=-16V |
   
 ## ATX DC2DC Thermal and Current Limits ##
@@ -141,8 +153,143 @@ For the lowest voltage drop (cable loss) of the power cables to the S-100 Bus an
 
 NOTE: On PVC vs THHN - THHN (Teflon Coated Wire) does not increase the current carrying capability of a wire.  It does increase the temperature rating before failure.  Simply put, it can dissipate more heat so a smaller wire can be used, but it comes at the cost of a larger voltage drop and more losses in the cable.  However, THHN can be used at the above wire guage limits as it offers better abrasion resistance, heat tolerance, and is easier to pull through tight spaces due to its Teflon coating.
 
+### ATX DC2DC Dimensions and Connector Locations ###
 
+The following diagram shows the dimensions and the mounting holes and connector locations:
 
+![picture alt](Docs/ATX-DC2DC-Dimensions-and-Connectors.png "ATX_DC2DC_DIMENSIONS")
 
+It is recommended that the ATX DC2DC Board be mounted on a panel with standoffs of at least 0.25" to allow for airflow underneath the PCB for cooling at high loads.
+
+### Connector Pinout Tables ###
+
+#### J1: ATX Main Power Connector ####
+
+  | <b>Pin Number </b>   | <b>ATX Function</b>                       | <b>ATX DC2DC Use</b>      |
+  |----------------|--------------------------------|-----------------------|
+  | <b>1</b>     | +3.3V | <b>Bias Voltage for Fans and LEDs</b>      |
+  | <b>2</b>     | +3.3V | <b>Bias Voltage for Fans and LEDs</b>      |
+  | <b>3</b>     | Ground | <b>Ground for Board</b>|
+  | <b>4</b>     | +5.0V | <b>Bias Voltage and LED Supply</b>|
+  | <b>5</b>     | Ground | <b>Ground for Board</b>|
+  | <b>6</b>     | +5.0V | <b>Bias Voltage and LED Supply</b>|
+  | <b>7</b>     | Ground | <b>Ground for Board</b>|
+  | <b>8</b>     | Power OK | <b>Used to enable on board regulators</b>|
+  | <b>9</b>     | +5V Standby | <b>Connected to PWREN Pin 2 for external use</b>|
+  | <b>10</b>    | +12.0V | <b>Used as main supply for on-board regulators</b>|
+  | <b>11</b>    | +12.0V | <b>Used as main supply for on-board regulators</b>|
+  | <b>12</b>    | +3.3V | <b>Bias Voltage for Fans and LEDs</b>      |
+  | <b>13</b>    | +3.3V | <b>Bias Voltage for Fans and LEDs</b>      |
+  | <b>14</b>    | -12V (if supported) | <b>Input to -5V Regulator</b>      |
+  | <b>15</b>    | Ground | <b>Ground for Board</b>|
+  | <b>16</b>    | Power Switch Input | <b>Connected to PWREN Pin 4</b>|
+  | <b>17</b>    | Ground | <b>Ground for Board</b>|
+  | <b>18</b>    | Ground | <b>Ground for Board</b>|
+  | <b>19</b>    | Ground | <b>Ground for Board</b>|
+  | <b>20</b>    | No Connect | <b>Not Used</b>|
+  | <b>21</b>    | +5.0V | <b>Bias Voltage and LED Supply</b>|
+  | <b>22</b>    | +5.0V | <b>Bias Voltage and LED Supply</b>|
+  | <b>23</b>    | +5.0V | <b>Bias Voltage and LED Supply</b>|
+  | <b>24</b>    | Ground | <b>Ground for Board</b>|
+
+#### J3: ATX CPU Power Connector ####
+
+  | <b>Pin Number </b>   | <b>ATX Function</b>                       | <b>ATX DC2DC Use</b>      |
+  |----------------|--------------------------------|-----------------------|
+  | <b>1</b>     | Ground | <b>Ground for Board</b>|
+  | <b>2</b>     | Ground | <b>Ground for Board</b>|
+  | <b>3</b>     | Ground | <b>Ground for Board</b>|
+  | <b>4</b>     | Ground | <b>Ground for Board</b>|
+  | <b>5</b>     | +12.0V | <b>Used as main supply for on-board regulators</b>|
+  | <b>6</b>     | +12.0V | <b>Used as main supply for on-board regulators</b>|
+  | <b>7</b>     | +12.0V | <b>Used as main supply for on-board regulators</b>|
+  | <b>8</b>     | +12.0V | <b>Used as main supply for on-board regulators</b>|
+
+#### J5: ATX PCIE Power Connector ####
+
+  | <b>Pin Number </b>   | <b>ATX Function</b>                       | <b>ATX DC2DC Use</b>      |
+  |----------------|--------------------------------|-----------------------|
+  | <b>1</b>     | +12.0V | <b>Used as main supply for on-board regulators</b>|
+  | <b>2</b>     | +12.0V | <b>Used as main supply for on-board regulators</b>|
+  | <b>3</b>     | +12.0V | <b>Used as main supply for on-board regulators</b>|
+  | <b>4</b>     | Ground | <b>Ground for Board</b>|
+  | <b>5</b>     | Ground | <b>Ground for Board</b>|
+  | <b>6</b>     | Ground | <b>Ground for Board</b>|
+
+#### J13-14: 8in. Disk DC Power Connectors ####
+
+  | <b>Pin Number </b>   | <b>ATX DC2DC Function</b>    | <b>ATX DC2DC Use</b>      |
+  |----------------|--------------------------------|-----------------------|
+  | <b>1</b>     | +24V   | <b>+24V @ 4A supply for Disk Drives</b>|
+  | <b>2</b>     | Ground | <b>Ground for Disk Drives</b>|
+  | <b>3</b>     | Ground | <b>Ground for Disk Drives</b>|
+  | <b>4</b>     | -5V    | <b>-5V supply | <b>-5V @ 0.3A/0.5A for Disk Drives\*</b>|
+  | <b>5</b>     | +5V    | <b>+5V supply for Disk Drives (supplied by ATX +5V)</b>|
+  | <b>6</b>     | Ground | <b>Ground for Disk Drives</b>|
+
+\* = Supplied by ATX -12V (@ 0.5A) or -16V S-100 Supply (@ 0.3A)
+
+#### J15: S-100 Bus Power Output Connector ####
+
+  | <b>Pin Number </b>   | <b>ATX DC2DC Function</b>    | <b>ATX DC2DC Use</b>      |
+  |----------------|--------------------------------|-----------------------|
+  | <b>1</b>     | +7.5V/+8V | <b>+7.5V/+8V up to 25A/22A for S-100 Bus</b>|
+  | <b>2</b>     | +7.5V/+8V | <b>+7.5V/+8V up to 25A/22A for S-100 Bus</b>|
+  | <b>3</b>     | Ground | <b>Ground return for S-100 Bus</b>|
+  | <b>4</b>     | Ground | <b>Ground return for S-100 Bus</b>|
+  | <b>5</b>     | +16V   | <b>+16V up to 4A for S-100 Bus</b>|
+  | <b>6</b>     | -16V   | <b>-16V up to 0.5A for S-100 Bus</b>|
+
+#### J16: Voltage/Current Monitor Connector ####
+
+The Voltage/Current Monitor signals allow for the use of a micro-controller or programmable Panel Meter to monitor and display the S-100 and 8-inch Drive power supply voltages and curents.
+
+  | <b>Pin Number </b>   | <b>ATX DC2DC Function</b>         | <b>ATX DC2DC Use</b>      |
+  |----------------|--------------------------------|-----------------------|
+  | <b>1</b>     | 8VS: +7.5V/8V Voltage Sense  | <b>8.0V = 2.0V +/-5%</b>|
+  | <b>2</b>     | 8VIS: +7.5V/8V Current Sense   | <b>25A = 2.5V +/-5%</b>|
+  | <b>3</b>     | 16VS: +16V Voltage Sense  | <b>15.0V = 4.0V +/-5%</b>|
+  | <b>4</b>     | Ground | <b>Ground for Signals</b>|
+  | <b>5</b>     | Ground | <b>Ground for Signals</b>|
+  | <b>6</b>     | 16VIS: +16V Current Sense  | <b>2.5A = 1.24V +/-10%</b>|
+  | <b>7</b>     | 24VS: +24V Voltage Sense   | <b>24.0V = 2.4V +/-5%</b>|
+  | <b>8</b>     | 24VIS: +24V Current Sense  | <b>2.5A = 1.24V +/-10%</b>|
+
+#### J17: Control/Status Connector ####
+
+  | <b>Pin Number </b>   | <b>ATX DC2DC Function</b>                       | <b>ATX DC2DC Use</b>      |
+  |----------------|--------------------------------|-----------------------|
+  | <b>1</b>     | PWR OK     | <b>Used to control regulator startup</b>|
+  | <b>2</b>     | +5V Stndby | <b>Always on supply for expansion connections</b>|
+  | <b>3</b>     | PWRLED     | <b>External Connection for Stand PC Power LED</b>|
+  | <b>4</b>     | PWRSWT     | <b>Used to control ATX Power Supply: GND = ON</b>|
+  | <b>5</b>     | S100EN     | <b>Enables S-100 Power Supplies when low (open only for testing purposes)\*</b>|
+  | <b>6</b>     | Ground     | <b>Ground for Board</b>|
+
+\* = The only supplies that go to 0 volts when S100EN is high or unconnected are the +7.5V/+8V and -16V supplies.  The +16V and +24V supplies will be passively supplied with +12V via MOSFET protection diodes.  If a true zero volts is required, the user will need to power down the ATX PSU via the PWRSWT input.
+
+#### J22: FAN Control Connector ####
+
+  | <b>Pin Number </b>   | <b>ATX DC2DC Function</b>                       | <b>ATX DC2DC Use</b>      |
+  |----------------|--------------------------------|-----------------------|
+  | <b>1</b>     | TACH1  | <b>Tach output from Fan-1</b>|
+  | <b>2</b>     | PWM1   | <b>PWM Input for Fan-1 </b>|
+  | <b>3</b>     | TACH2  | <b>Tach output from Fan-2</b>|
+  | <b>4</b>     | PWM2   | <b>PWM Input for Fan-2</b>|
+  | <b>5</b>     | TACH3  | <b>Tach output from Fan-3</b>|
+  | <b>6</b>     | PWM3   | <b>PWM Input for Fan-3 </b>|
+  | <b>7</b>     | Ground | <b>Ground for Signals</b>|
+  | <b>8</b>     | +PUV   | <b>Pull Up Voltage for Fan Signals (3.3V/5V Selected by FAN PU Jumper)</b>|
+
+#### J23-26: PC FAN Connectors ####
+
+  | <b>Pin Number </b>   | <b>ATX DC2DC Function</b>                       | <b>ATX DC2DC Use</b>      |
+  |----------------|--------------------------------|-----------------------|
+  | <b>1</b>     | Ground | <b>Ground for Fans</b>|
+  | <b>2</b>     | +12.0V | <b>+12V Supply to PC Fan</b>|
+  | <b>3</b>     | TACH   | <b>Tach output from Fan</b>|
+  | <b>4</b>     | PWM    | <b>PWM Input for Fan</b>|
+
+n.b. - Pin 1 is at the bottom of the connector in the above diagram.
 
 

@@ -49,7 +49,7 @@ The ATX DC2DC Board replaces several discrete power supply setups using efficien
 
 ### S-100 Voltage Outputs and Currents ###
 
-  | <b>S-100 Output</b>   | <b>Function</b>                       | <b>Default Setting</b>      |
+  | <b>S-100 Output</b>   | <b>Function</b>                       | <b>Default Fuse Values</b>      |
   |----------------|--------------------------------|-----------------------|
   | <b>+7.5V</b> @ 25.0A   | Main Logic Supply on S-100 Bus | <b>~16.4A</b> (20.0A Fuse)   |
   |     - or -          |                                |                              |
@@ -110,7 +110,7 @@ This test was made with a resistor load box to dissipate the 187-watts of heat g
 
 ### 7.5V or 8V Current and Thermal Limits ###
 
-Due to the thermal constraints shown above, the current limits for the 7.5V and 8V versions of the ATX DC2DC are catagorized into four catagories accomoding to these operational limits.  The categories are 7.5V vs 8V and Fanless vs Fan cooling.
+Due to the thermal constraints shown above, the current limits for the 7.5V and 8V versions of the ATX DC2DC are catagorized into four catagories according to these operational limits.  The categories are 7.5V vs 8V and Fanless vs Fan cooling.
 
   | <b>Operational Mode</b> | <b>Current Limit</b> | 
   |------------------|-----------------|
@@ -127,7 +127,7 @@ The 24V 8" drive supply section behaves similarly to that of the 7.5v/8V section
 
 ### 16V Current and Thermal Limits ###
 
-The 16V section takes advantage of an efficient MOSFET than can be used in the 24V section (primarily because the higher switching voltages in the 24V section did not allow for using the more efficient MOSTFET).
+The 16V section takes advantage of a lower voltage and more efficient MOSFET than can be used in the 24V section (primarily because the higher switching voltages in the 24V section did not allow for using the lower voltage MOSTFET).
 
 However, since the 16V section does use the more efficient MOSFET, it does not require a fan to achieve its full loading of 4-amps.  A fan may still be required depending on the loading for the other output voltages.
 
